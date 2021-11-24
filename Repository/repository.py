@@ -7,7 +7,8 @@ class Repository(Protocol):
     def create(self, entity: Entity) -> None:
         ...
 
-    def read(self, id_entity: object = None) -> Type[Union[Optional[Entity], List[Entity]]]:
+    def read(self, id_entity: object = None) \
+            -> Type[Union[Optional[Entity], List[Entity]]]:
         ...
 
     def update(self, entity: Entity) -> None:

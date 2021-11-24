@@ -37,15 +37,18 @@ class Console:
             elif opt == 'sr':
                 self.handle_show_all(self.routes_service.get_all())
             elif opt == '3':
-                self.handle_show_all(self.routes_service.get_cities_ordered_by_return_routes())
+                self.handle_show_all(
+                    self.routes_service.get_cities_ordered_by_return_routes())
             elif opt == '4':
-                self.handle_show_all(self.routes_service.get_routes_stoping_in_a_municipiu())
+                self.handle_show_all(
+                    self.routes_service.get_routes_stoping_in_a_municipiu())
             elif opt == '5':
                 self.handle_export()
             elif opt == 'x':
                 break
             else:
                 print('Optiune invalida.')
+
     def handle_add_city(self):
         try:
             id_city = input('Id-ul localitatii: ')

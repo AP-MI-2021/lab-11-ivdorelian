@@ -29,20 +29,27 @@ class RoutesService:
         """
         Adauga o ruta.
         :param id_route: id-ul rutei
-        :param id_start_city: id-ul orasului de pornire, diferit de id_start_city
-        :param id_stop_city: id-ul orasului de sosire, diferit de id_stop_city
+        :param id_start_city: id-ul orasului de pornire,
+        diferit de id_start_city
+        :param id_stop_city: id-ul orasului de sosire,
+        diferit de id_stop_city
         :param price: pretul
         :param return_route: daca e dus-intors
         :return:
         """
-        route = Route(id_route, id_start_city, id_stop_city, price, return_route)
+        route = Route(id_route,
+                      id_start_city,
+                      id_stop_city,
+                      price,
+                      return_route)
         errors = []
         if self.city_repository.read(id_start_city) is None:
             errors.append(f'Nu exista oras cu id-ul {id_start_city}')
         if self.city_repository.read(id_stop_city) is None:
             errors.append(f'Nu exista oras cu id-ul {id_stop_city}')
         if id_stop_city == id_start_city:
-            errors.append('id-urile oraselor de pornire si sosire nu pot fi egale!')
+            errors.append('id-urile oraselor de pornire si sosire '
+                          'nu pot fi egale!')
         if errors:
             raise ValueError(errors)
         self.routes_repository.create(route)
@@ -64,7 +71,8 @@ class RoutesService:
         routes = self.routes_repository.read()
         for city in self.city_repository.read():
             routes_from_city = [route for route in routes
-                                if route.id_start_city == city.id_entity and route.return_route]
+                                if route.id_start_city == city.id_entity and
+                                route.return_route]
             result.append((city, len(routes_from_city)))
 
         return sorted(result, key=lambda x: x[1])
@@ -99,7 +107,7 @@ class RoutesService:
         routes = self.routes_repository.read()
         for city in self.city_repository.read():
             ids_from_city = [route.id_stop_city for route in routes
-                            if route.id_start_city == city.id_entity]
+                             if route.id_start_city == city.id_entity]
             result[city.name] = [self.city_repository.read(id_stop_city).name
                                  for id_stop_city in ids_from_city]
 
