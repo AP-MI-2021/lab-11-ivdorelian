@@ -2,6 +2,7 @@ from Domain.city_validator import CityValidator
 from Repository.json_repository import JsonRepository
 from Service.city_service import CityService
 from Service.routes_service import RoutesService
+from Tests.test_routes_service import test_export_json
 from UserInterface.console import Console
 
 
@@ -19,4 +20,5 @@ def main():
 
 
 if __name__ == '__main__':
+    test_export_json()
     main()

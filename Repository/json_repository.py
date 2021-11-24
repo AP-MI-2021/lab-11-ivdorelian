@@ -23,6 +23,11 @@ class JsonRepository(Repository):
             f.write(jsonpickle.dumps(objects))
 
     def create(self, entity: Entity) -> None:
+        """
+
+        :param entity:
+        :return:
+        """
 
         entities = self.__read_file()
         if self.read(entity.id_entity) is not None:
@@ -34,6 +39,11 @@ class JsonRepository(Repository):
 
     def read(self, id_entity: object = None) \
             -> Type[Union[Optional[Entity], List[Entity]]]:
+        """
+
+        :param id_entity:
+        :return:
+        """
 
         entities = self.__read_file()
         if id_entity:
