@@ -31,7 +31,8 @@ class JsonRepository(Repository):
         entities[entity.id_entity] = entity
         self.__write_file(entities)
 
-    def read(self, id_entity: object = None) -> Type[Union[Optional[Entity], List[Entity]]]:
+    def read(self, id_entity: object = None) \
+            -> Type[Union[Optional[Entity], List[Entity]]]:
 
         entities = self.__read_file()
         if id_entity:
